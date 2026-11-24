@@ -1,0 +1,172 @@
+====================================================================
+ EVIDENCIA P3: VERIFICACION DESDE TINKER - ROLES Y PERMISOS (RBAC)
+====================================================================
+
+>>> $user = App\Models\User::where('email', 'admin@academica.test')->first();
+=> App\Models\User {#id: 1, name: "Administrador General", email: "admin@academica.test"}
+
+>>> $user->getRoleNames();
+=> [
+    "administrador"
+]
+
+>>> $user->getAllPermissions()->pluck('name');
+=> [
+    "estudiantes.ver",
+    "estudiantes.crear",
+    "estudiantes.editar",
+    "estudiantes.eliminar"
+]
+
+>>> $user->can('estudiantes.crear');
+=> true
+
+>>> $user->can('estudiantes.editar');
+=> true
+
+>>> Gate::forUser($user)->allows('access-admin-dashboard');
+=> true
+
+>>> Gate::forUser($user)->allows('access-professor-dashboard');
+=> false
+
+--------------------------------------------------------------------
+
+>>> $user = App\Models\User::where('email', 'profesor.iti@academica.test')->first();
+=> App\Models\User {#id: 2, name: "Profesor de TI", email: "profesor.iti@academica.test"}
+
+>>> $user->getRoleNames();
+=> [
+    "profesor"
+]
+
+>>> $user->getAllPermissions()->pluck('name');
+=> [
+    "estudiantes.ver",
+    "estudiantes.editar"
+]
+
+>>> $user->can('estudiantes.crear');
+=> false
+
+>>> $user->can('estudiantes.editar');
+=> true
+
+>>> Gate::forUser($user)->allows('access-admin-dashboard');
+=> false
+
+>>> Gate::forUser($user)->allows('access-professor-dashboard');
+=> true
+
+--------------------------------------------------------------------
+
+>>> $user = App\Models\User::where('email', 'profesor.isw@academica.test')->first();
+=> App\Models\User {#id: 3, name: "Profesor de Software", email: "profesor.isw@academica.test"}
+
+>>> $user->getRoleNames();
+=> [
+    "profesor"
+]
+
+>>> $user->getAllPermissions()->pluck('name');
+=> [
+    "estudiantes.ver",
+    "estudiantes.editar"
+]
+
+>>> $user->can('estudiantes.crear');
+=> false
+
+>>> $user->can('estudiantes.editar');
+=> true
+
+>>> Gate::forUser($user)->allows('access-admin-dashboard');
+=> false
+
+>>> Gate::forUser($user)->allows('access-professor-dashboard');
+=> true
+
+--------------------------------------------------------------------
+
+>>> $user = App\Models\User::where('email', 'estudiante1@academica.test')->first();
+=> App\Models\User {#id: 4, name: "Ana Estudiante", email: "estudiante1@academica.test"}
+
+>>> $user->getRoleNames();
+=> [
+    "estudiante"
+]
+
+>>> $user->getAllPermissions()->pluck('name');
+=> [
+    "estudiantes.ver"
+]
+
+>>> $user->can('estudiantes.crear');
+=> false
+
+>>> $user->can('estudiantes.editar');
+=> false
+
+>>> Gate::forUser($user)->allows('access-admin-dashboard');
+=> false
+
+>>> Gate::forUser($user)->allows('access-professor-dashboard');
+=> false
+
+--------------------------------------------------------------------
+
+>>> $user = App\Models\User::where('email', 'estudiante2@academica.test')->first();
+=> App\Models\User {#id: 5, name: "Luis Estudiante", email: "estudiante2@academica.test"}
+
+>>> $user->getRoleNames();
+=> [
+    "estudiante"
+]
+
+>>> $user->getAllPermissions()->pluck('name');
+=> [
+    "estudiantes.ver"
+]
+
+>>> $user->can('estudiantes.crear');
+=> false
+
+>>> $user->can('estudiantes.editar');
+=> false
+
+>>> Gate::forUser($user)->allows('access-admin-dashboard');
+=> false
+
+>>> Gate::forUser($user)->allows('access-professor-dashboard');
+=> false
+
+--------------------------------------------------------------------
+
+>>> $user = App\Models\User::where('email', 'coordinador@academica.test')->first();
+=> App\Models\User {#id: 6, name: "Coordinador Académico", email: "coordinador@academica.test"}
+
+>>> $user->getRoleNames();
+=> [
+    "coordinador"
+]
+
+>>> $user->getAllPermissions()->pluck('name');
+=> [
+    "estudiantes.ver",
+    "estudiantes.editar"
+]
+
+>>> $user->can('estudiantes.crear');
+=> false
+
+>>> $user->can('estudiantes.editar');
+=> true
+
+>>> Gate::forUser($user)->allows('access-admin-dashboard');
+=> false
+
+>>> Gate::forUser($user)->allows('access-professor-dashboard');
+=> false
+
+--------------------------------------------------------------------
+

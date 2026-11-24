@@ -1,0 +1,165 @@
+[
+    {
+        "caso": "Usuario no autenticado (Sin Token)",
+        "pruebas": {
+            "\/api\/admin\/dashboard": {
+                "gate": "access-admin-dashboard",
+                "status_code": 401,
+                "response": {
+                    "message": "Unauthenticated."
+                }
+            },
+            "\/api\/profesor\/dashboard": {
+                "gate": "access-professor-dashboard",
+                "status_code": 401,
+                "response": {
+                    "message": "Unauthenticated."
+                }
+            }
+        }
+    },
+    {
+        "caso": "Administrador General (admin@academica.test)",
+        "pruebas": {
+            "\/api\/admin\/dashboard": {
+                "gate": "access-admin-dashboard",
+                "status_code": 200,
+                "response": {
+                    "message": "Bienvenido al dashboard administrativo",
+                    "user": "Administrador General"
+                }
+            },
+            "\/api\/profesor\/dashboard": {
+                "gate": "access-professor-dashboard",
+                "status_code": 403,
+                "response": {
+                    "message": "This action is unauthorized.",
+                    "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException",
+                    "file": "C:\\Users\\sujey\\.gemini\\antigravity\\scratch\\Actividad-2_Grupal\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+                    "line": 777
+                }
+            }
+        }
+    },
+    {
+        "caso": "Profesor de TI (profesor.iti@academica.test)",
+        "pruebas": {
+            "\/api\/admin\/dashboard": {
+                "gate": "access-admin-dashboard",
+                "status_code": 403,
+                "response": {
+                    "message": "This action is unauthorized.",
+                    "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException",
+                    "file": "C:\\Users\\sujey\\.gemini\\antigravity\\scratch\\Actividad-2_Grupal\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+                    "line": 777
+                }
+            },
+            "\/api\/profesor\/dashboard": {
+                "gate": "access-professor-dashboard",
+                "status_code": 200,
+                "response": {
+                    "message": "Bienvenido al dashboard de profesores",
+                    "user": "Profesor de TI"
+                }
+            }
+        }
+    },
+    {
+        "caso": "Profesor de Software (profesor.isw@academica.test)",
+        "pruebas": {
+            "\/api\/admin\/dashboard": {
+                "gate": "access-admin-dashboard",
+                "status_code": 403,
+                "response": {
+                    "message": "This action is unauthorized.",
+                    "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException",
+                    "file": "C:\\Users\\sujey\\.gemini\\antigravity\\scratch\\Actividad-2_Grupal\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+                    "line": 777
+                }
+            },
+            "\/api\/profesor\/dashboard": {
+                "gate": "access-professor-dashboard",
+                "status_code": 200,
+                "response": {
+                    "message": "Bienvenido al dashboard de profesores",
+                    "user": "Profesor de Software"
+                }
+            }
+        }
+    },
+    {
+        "caso": "Ana Estudiante (estudiante1@academica.test)",
+        "pruebas": {
+            "\/api\/admin\/dashboard": {
+                "gate": "access-admin-dashboard",
+                "status_code": 403,
+                "response": {
+                    "message": "This action is unauthorized.",
+                    "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException",
+                    "file": "C:\\Users\\sujey\\.gemini\\antigravity\\scratch\\Actividad-2_Grupal\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+                    "line": 777
+                }
+            },
+            "\/api\/profesor\/dashboard": {
+                "gate": "access-professor-dashboard",
+                "status_code": 403,
+                "response": {
+                    "message": "This action is unauthorized.",
+                    "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException",
+                    "file": "C:\\Users\\sujey\\.gemini\\antigravity\\scratch\\Actividad-2_Grupal\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+                    "line": 777
+                }
+            }
+        }
+    },
+    {
+        "caso": "Luis Estudiante (estudiante2@academica.test)",
+        "pruebas": {
+            "\/api\/admin\/dashboard": {
+                "gate": "access-admin-dashboard",
+                "status_code": 403,
+                "response": {
+                    "message": "This action is unauthorized.",
+                    "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException",
+                    "file": "C:\\Users\\sujey\\.gemini\\antigravity\\scratch\\Actividad-2_Grupal\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+                    "line": 777
+                }
+            },
+            "\/api\/profesor\/dashboard": {
+                "gate": "access-professor-dashboard",
+                "status_code": 403,
+                "response": {
+                    "message": "This action is unauthorized.",
+                    "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException",
+                    "file": "C:\\Users\\sujey\\.gemini\\antigravity\\scratch\\Actividad-2_Grupal\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+                    "line": 777
+                }
+            }
+        }
+    },
+    {
+        "caso": "Coordinador Académico (coordinador@academica.test)",
+        "pruebas": {
+            "\/api\/admin\/dashboard": {
+                "gate": "access-admin-dashboard",
+                "status_code": 403,
+                "response": {
+                    "message": "This action is unauthorized.",
+                    "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException",
+                    "file": "C:\\Users\\sujey\\.gemini\\antigravity\\scratch\\Actividad-2_Grupal\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+                    "line": 777
+                }
+            },
+            "\/api\/profesor\/dashboard": {
+                "gate": "access-professor-dashboard",
+                "status_code": 403,
+                "response": {
+                    "message": "This action is unauthorized.",
+                    "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException",
+                    "file": "C:\\Users\\sujey\\.gemini\\antigravity\\scratch\\Actividad-2_Grupal\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+                    "line": 777
+                }
+            }
+        }
+    }
+]

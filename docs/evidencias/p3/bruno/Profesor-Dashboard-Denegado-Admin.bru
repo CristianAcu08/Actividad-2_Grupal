@@ -1,0 +1,25 @@
+meta {
+  name: 4. Profesor Dashboard Denegado a Admin
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/profesor/dashboard
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+tests {
+  test("Status code is 403 Forbidden", function() {
+    expect(res.getStatus()).to.equal(403);
+  });
+}

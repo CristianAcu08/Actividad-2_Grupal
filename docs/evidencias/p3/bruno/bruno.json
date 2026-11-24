@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Dashboards & RBAC Gates (P3)",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

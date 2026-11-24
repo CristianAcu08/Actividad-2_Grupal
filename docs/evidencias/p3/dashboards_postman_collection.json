@@ -1,0 +1,207 @@
+{
+  "info": {
+    "_postman_id": "f8a92e10-189a-4c92-bf39-d59e9a489c74",
+    "name": "Dashboards & RBAC Gates (P3)",
+    "description": "Colección de pruebas para Gates de Dashboards y verificación RBAC (P3)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "adminToken",
+      "value": ""
+    },
+    {
+      "key": "profesorToken",
+      "value": ""
+    },
+    {
+      "key": "estudianteToken",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "01. Admin Dashboard - Acceso Autorizado (200)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{adminToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "02. Admin Dashboard - Denegado a Profesor (403)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{profesorToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "03. Admin Dashboard - Denegado a Estudiante (403)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{estudianteToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "04. Profesor Dashboard - Acceso Autorizado (200)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{profesorToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/profesor/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "profesor", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "05. Profesor Dashboard - Denegado a Administrador (403)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{adminToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/profesor/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "profesor", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "06. Profesor Dashboard - Denegado a Estudiante (403)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{estudianteToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/profesor/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "profesor", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "07. Dashboards sin Token - Autenticación Requerida (401)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/admin/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "admin", "dashboard"]
+        }
+      }
+    }
+  ]
+}

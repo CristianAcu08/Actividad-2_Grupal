@@ -1,0 +1,28 @@
+meta {
+  name: 1. Admin Dashboard Exitoso
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/admin/dashboard
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Message contains dashboard administrativo", function() {
+    expect(res.getBody().message).to.equal("Bienvenido al dashboard administrativo");
+  });
+}

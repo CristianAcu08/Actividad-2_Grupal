@@ -1,0 +1,28 @@
+meta {
+  name: 3. Profesor Dashboard Exitoso
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/profesor/dashboard
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{profesorToken}}
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Message contains dashboard de profesores", function() {
+    expect(res.getBody().message).to.equal("Bienvenido al dashboard de profesores");
+  });
+}
