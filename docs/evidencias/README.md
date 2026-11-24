@@ -14,7 +14,7 @@
 | **P2** | `p2-auth` | `AuthController` (`register`, `login`, `me`, `logout`) y `routes/api/auth.php` | Integrado y verificado | [docs/evidencias/p2/README.md](p2/README.md) |
 | **P3** | `p3-rbac-gates` | Seeders RBAC/datos, Gates (`access-admin-dashboard`, `access-professor-dashboard`), `routes/api/dashboard.php` | Integrado y verificado | [docs/evidencias/p3/README.md](p3/README.md) |
 | **P4** | `p4-policies-abac` | `EstudiantePolicy` (ABAC + inactivos), `EstudianteController`, `routes/api/estudiantes.php` con `permission:estudiantes.crear` | Integrado y completado para entrega final | Rutas CRUD + Policies ABAC verificadas en verde |
-| **P5** | `p5-tests-entrega` | `AutorizacionEstudiantesTest`, colección consolidada (`coleccion/`), `docs/reflexion.md`, matriz `401 vs 403`, verificación final | Integrado y verificado (`17/17` tests OK) | [docs/evidencias/p5/README.md](p5/README.md) |
+| **P5** | `p5-tests-entrega` | `AutorizacionEstudiantesTest`, colección consolidada (`coleccion/`), `docs/reflexion.md`, matriz `401 vs 403`, evidencias HTTP de autorización (`35/35`) | Integrado y verificado (`17/17` PHPUnit + `35/35` HTTP OK) | [docs/evidencias/p5/README.md](p5/README.md) · [evidencias_pruebas_autorizacion.md](p5/evidencias_pruebas_autorizacion.md) |
 
 ---
 

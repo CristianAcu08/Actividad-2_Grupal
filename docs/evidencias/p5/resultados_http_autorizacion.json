@@ -1,0 +1,698 @@
+{
+    "fecha_ejecucion": "2026-11-24 03:38:02",
+    "laravel_version": "13.43.0",
+    "php_version": "8.4.23",
+    "resumen": {
+        "total_casos": 35,
+        "aprobados": 35,
+        "fallidos": 0
+    },
+    "casos": [
+        {
+            "seccion": "Autenticación (Sanctum)",
+            "caso": "Login válido Administrador",
+            "actor": "admin@academica.test",
+            "metodo": "POST",
+            "endpoint": "/api/login",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "message": "Inicio de sesión exitoso",
+                "token": "<TOKEN_SANITIZADO>",
+                "access_token": "<TOKEN_SANITIZADO>",
+                "token_type": "Bearer",
+                "user": {
+                    "id": 1,
+                    "name": "Administrador General",
+                    "email": "admin@academica.test",
+                    "email_verified_at": null,
+                    "created_at": "2026-11-24T03:37:57.000000Z",
+                    "updated_at": "2026-11-24T03:37:57.000000Z",
+                    "carrera_id": null,
+                    "sede_id": null
+                }
+            }
+        },
+        {
+            "seccion": "Autenticación (Sanctum)",
+            "caso": "Consulta /api/me con Bearer Token",
+            "actor": "admin@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/me",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "id": 1,
+                "name": "Administrador General",
+                "email": "admin@academica.test",
+                "email_verified_at": null,
+                "created_at": "2026-11-24T03:37:57.000000Z",
+                "updated_at": "2026-11-24T03:37:57.000000Z",
+                "carrera_id": null,
+                "sede_id": null,
+                "user": {
+                    "id": 1,
+                    "name": "Administrador General",
+                    "email": "admin@academica.test",
+                    "email_verified_at": null,
+                    "created_at": "2026-11-24T03:37:57.000000Z",
+                    "updated_at": "2026-11-24T03:37:57.000000Z",
+                    "carrera_id": null,
+                    "sede_id": null
+                }
+            }
+        },
+        {
+            "seccion": "Autenticación (Sanctum)",
+            "caso": "Consulta /api/me sin token (401)",
+            "actor": "Sin token",
+            "metodo": "GET",
+            "endpoint": "/api/me",
+            "esperado": 401,
+            "obtenido": 401,
+            "aprobado": true,
+            "respuesta": {
+                "message": "Unauthenticated."
+            }
+        },
+        {
+            "seccion": "Autenticación (Sanctum)",
+            "caso": "Listado /api/estudiantes sin token (401)",
+            "actor": "Sin token",
+            "metodo": "GET",
+            "endpoint": "/api/estudiantes",
+            "esperado": 401,
+            "obtenido": 401,
+            "aprobado": true,
+            "respuesta": {
+                "message": "Unauthenticated."
+            }
+        },
+        {
+            "seccion": "Gates (Dashboards)",
+            "caso": "Dashboard admin - Administrador",
+            "actor": "admin@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/admin/dashboard",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "message": "Bienvenido al dashboard administrativo",
+                "user": "Administrador General"
+            }
+        },
+        {
+            "seccion": "Gates (Dashboards)",
+            "caso": "Dashboard admin - Profesor ITI",
+            "actor": "profesor.iti@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/admin/dashboard",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "This action is unauthorized.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "Gates (Dashboards)",
+            "caso": "Dashboard admin - Estudiante Ana",
+            "actor": "estudiante1@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/admin/dashboard",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "This action is unauthorized.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "Gates (Dashboards)",
+            "caso": "Dashboard admin - Sin token",
+            "actor": "Sin token",
+            "metodo": "GET",
+            "endpoint": "/api/admin/dashboard",
+            "esperado": 401,
+            "obtenido": 401,
+            "aprobado": true,
+            "respuesta": {
+                "message": "Unauthenticated."
+            }
+        },
+        {
+            "seccion": "Gates (Actividad 1)",
+            "caso": "Dashboard profesor - Profesor ITI",
+            "actor": "profesor.iti@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/profesor/dashboard",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "message": "Bienvenido al dashboard de profesores",
+                "user": "Profesor de TI"
+            }
+        },
+        {
+            "seccion": "Gates (Actividad 1)",
+            "caso": "Dashboard profesor - Administrador",
+            "actor": "admin@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/profesor/dashboard",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "This action is unauthorized.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "Gates (Actividad 1)",
+            "caso": "Dashboard profesor - Estudiante Ana",
+            "actor": "estudiante1@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/profesor/dashboard",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "This action is unauthorized.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "Gates (Actividad 1)",
+            "caso": "Dashboard profesor - Coordinador",
+            "actor": "coordinador@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/profesor/dashboard",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "This action is unauthorized.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "RBAC (Middleware + Policy)",
+            "caso": "Crear estudiante - Profesor denegado (middleware)",
+            "actor": "profesor.iti@academica.test",
+            "metodo": "POST",
+            "endpoint": "/api/estudiantes",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "User does not have the right permissions.",
+                "exception": "Spatie\\Permission\\Exceptions\\UnauthorizedException"
+            }
+        },
+        {
+            "seccion": "RBAC (Middleware + Policy)",
+            "caso": "Crear estudiante - Estudiante denegado (middleware)",
+            "actor": "estudiante1@academica.test",
+            "metodo": "POST",
+            "endpoint": "/api/estudiantes",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "User does not have the right permissions.",
+                "exception": "Spatie\\Permission\\Exceptions\\UnauthorizedException"
+            }
+        },
+        {
+            "seccion": "RBAC (Middleware + Policy)",
+            "caso": "Crear estudiante - Coordinador denegado (middleware)",
+            "actor": "coordinador@academica.test",
+            "metodo": "POST",
+            "endpoint": "/api/estudiantes",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "User does not have the right permissions.",
+                "exception": "Spatie\\Permission\\Exceptions\\UnauthorizedException"
+            }
+        },
+        {
+            "seccion": "RBAC (Middleware + Policy)",
+            "caso": "Crear estudiante - Administrador autorizado",
+            "actor": "admin@academica.test",
+            "metodo": "POST",
+            "endpoint": "/api/estudiantes",
+            "esperado": 201,
+            "obtenido": 201,
+            "aprobado": true,
+            "respuesta": {
+                "user_id": 7,
+                "carrera_id": 1,
+                "cedula": "3-3333-3333",
+                "nombre": "Carlos",
+                "apellido": "Ejemplo",
+                "correo_institucional": "carlos@estudiantes.test",
+                "activo": true,
+                "updated_at": "2026-11-24T03:38:01.000000Z",
+                "created_at": "2026-11-24T03:38:01.000000Z",
+                "id": 5
+            }
+        },
+        {
+            "seccion": "Policies (Consulta/Propiedad)",
+            "caso": "GET detalle Ana - Administrador",
+            "actor": "admin@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/estudiantes/1",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "id": 1,
+                "user_id": 4,
+                "carrera_id": 1,
+                "cedula": "1-1111-1111",
+                "nombre": "Ana",
+                "apellido": "Estudiante",
+                "correo_institucional": "ana@estudiantes.test",
+                "activo": true,
+                "created_at": "2026-11-24T03:37:58.000000Z",
+                "updated_at": "2026-11-24T03:37:58.000000Z",
+                "carrera": {
+                    "id": 1,
+                    "nombre": "Ingeniería en Tecnologías de Información",
+                    "codigo": "ITI",
+                    "sede_id": 1,
+                    "created_at": "2026-11-24T03:37:57.000000Z",
+                    "updated_at": "2026-11-24T03:37:57.000000Z",
+                    "sede": {
+                        "id": 1,
+                        "nombre": "Sede Central",
+                        "codigo": "SC",
+                        "created_at": "2026-11-24T03:37:57.000000Z",
+                        "updated_at": "2026-11-24T03:37:57.000000Z"
+                    }
+                },
+                "usuario": {
+                    "id": 4,
+                    "name": "Ana Estudiante",
+                    "email": "estudiante1@academica.test",
+                    "email_verified_at": null,
+                    "created_at": "2026-11-24T03:37:58.000000Z",
+                    "updated_at": "2026-11-24T03:37:58.000000Z",
+                    "carrera_id": 1,
+                    "sede_id": 1
+                }
+            }
+        },
+        {
+            "seccion": "Policies (Consulta/Propiedad)",
+            "caso": "GET detalle Ana - Propio registro Estudiante Ana",
+            "actor": "estudiante1@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/estudiantes/1",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "id": 1,
+                "user_id": 4,
+                "carrera_id": 1,
+                "cedula": "1-1111-1111",
+                "nombre": "Ana",
+                "apellido": "Estudiante",
+                "correo_institucional": "ana@estudiantes.test",
+                "activo": true,
+                "created_at": "2026-11-24T03:37:58.000000Z",
+                "updated_at": "2026-11-24T03:37:58.000000Z",
+                "carrera": {
+                    "id": 1,
+                    "nombre": "Ingeniería en Tecnologías de Información",
+                    "codigo": "ITI",
+                    "sede_id": 1,
+                    "created_at": "2026-11-24T03:37:57.000000Z",
+                    "updated_at": "2026-11-24T03:37:57.000000Z",
+                    "sede": {
+                        "id": 1,
+                        "nombre": "Sede Central",
+                        "codigo": "SC",
+                        "created_at": "2026-11-24T03:37:57.000000Z",
+                        "updated_at": "2026-11-24T03:37:57.000000Z"
+                    }
+                },
+                "usuario": {
+                    "id": 4,
+                    "name": "Ana Estudiante",
+                    "email": "estudiante1@academica.test",
+                    "email_verified_at": null,
+                    "created_at": "2026-11-24T03:37:58.000000Z",
+                    "updated_at": "2026-11-24T03:37:58.000000Z",
+                    "carrera_id": 1,
+                    "sede_id": 1
+                }
+            }
+        },
+        {
+            "seccion": "Policies (Consulta/Propiedad)",
+            "caso": "GET detalle Luis - Estudiante Ana (registro ajeno)",
+            "actor": "estudiante1@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/estudiantes/2",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "Solo puede consultar su propio registro estudiantil.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "Policies (Consulta/Propiedad)",
+            "caso": "GET detalle Ana - Profesor ITI (misma carrera/sede)",
+            "actor": "profesor.iti@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/estudiantes/1",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "id": 1,
+                "user_id": 4,
+                "carrera_id": 1,
+                "cedula": "1-1111-1111",
+                "nombre": "Ana",
+                "apellido": "Estudiante",
+                "correo_institucional": "ana@estudiantes.test",
+                "activo": true,
+                "created_at": "2026-11-24T03:37:58.000000Z",
+                "updated_at": "2026-11-24T03:37:58.000000Z",
+                "carrera": {
+                    "id": 1,
+                    "nombre": "Ingeniería en Tecnologías de Información",
+                    "codigo": "ITI",
+                    "sede_id": 1,
+                    "created_at": "2026-11-24T03:37:57.000000Z",
+                    "updated_at": "2026-11-24T03:37:57.000000Z",
+                    "sede": {
+                        "id": 1,
+                        "nombre": "Sede Central",
+                        "codigo": "SC",
+                        "created_at": "2026-11-24T03:37:57.000000Z",
+                        "updated_at": "2026-11-24T03:37:57.000000Z"
+                    }
+                },
+                "usuario": {
+                    "id": 4,
+                    "name": "Ana Estudiante",
+                    "email": "estudiante1@academica.test",
+                    "email_verified_at": null,
+                    "created_at": "2026-11-24T03:37:58.000000Z",
+                    "updated_at": "2026-11-24T03:37:58.000000Z",
+                    "carrera_id": 1,
+                    "sede_id": 1
+                }
+            }
+        },
+        {
+            "seccion": "Policies (Consulta/Propiedad)",
+            "caso": "GET detalle Luis - Profesor ITI (otra carrera)",
+            "actor": "profesor.iti@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/estudiantes/2",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "No tiene permiso para ver este estudiante.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "Actividad 2 (Registro Inactivo)",
+            "caso": "GET registro inactivo - Administrador",
+            "actor": "admin@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/estudiantes/3",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "id": 3,
+                "user_id": 8,
+                "carrera_id": 1,
+                "cedula": "8-8888-8888",
+                "nombre": "Pedro",
+                "apellido": "Inactivo",
+                "correo_institucional": "pedro.inactivo@estudiantes.test",
+                "activo": false,
+                "created_at": "2026-11-24T03:38:00.000000Z",
+                "updated_at": "2026-11-24T03:38:00.000000Z",
+                "carrera": {
+                    "id": 1,
+                    "nombre": "Ingeniería en Tecnologías de Información",
+                    "codigo": "ITI",
+                    "sede_id": 1,
+                    "created_at": "2026-11-24T03:37:57.000000Z",
+                    "updated_at": "2026-11-24T03:37:57.000000Z",
+                    "sede": {
+                        "id": 1,
+                        "nombre": "Sede Central",
+                        "codigo": "SC",
+                        "created_at": "2026-11-24T03:37:57.000000Z",
+                        "updated_at": "2026-11-24T03:37:57.000000Z"
+                    }
+                },
+                "usuario": {
+                    "id": 8,
+                    "name": "Pedro Inactivo",
+                    "email": "pedro.inactivo@academica.test",
+                    "email_verified_at": null,
+                    "created_at": "2026-11-24T03:38:00.000000Z",
+                    "updated_at": "2026-11-24T03:38:00.000000Z",
+                    "carrera_id": 1,
+                    "sede_id": 1
+                }
+            }
+        },
+        {
+            "seccion": "Actividad 2 (Registro Inactivo)",
+            "caso": "GET registro inactivo - Profesor ITI (misma carrera/sede)",
+            "actor": "profesor.iti@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/estudiantes/3",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "No tiene permiso para ver este estudiante.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "Actividad 2 (Registro Inactivo)",
+            "caso": "GET registro inactivo - Coordinador ITI (misma carrera/sede)",
+            "actor": "coordinador@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/estudiantes/3",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "No tiene permiso para ver este estudiante.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "Actividad 2 (Registro Inactivo)",
+            "caso": "GET registro inactivo - Estudiante Ana (misma carrera/sede)",
+            "actor": "estudiante1@academica.test",
+            "metodo": "GET",
+            "endpoint": "/api/estudiantes/3",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "Solo puede consultar su propio registro estudiantil.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "ABAC (Actividad 4 - Escenario 1)",
+            "caso": "PUT Ana - Profesor ITI (misma carrera + misma sede)",
+            "actor": "profesor.iti@academica.test",
+            "metodo": "PUT",
+            "endpoint": "/api/estudiantes/1",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "id": 1,
+                "user_id": 4,
+                "carrera_id": 1,
+                "cedula": "1-1111-1111",
+                "nombre": "Ana María",
+                "apellido": "Estudiante",
+                "correo_institucional": "ana@estudiantes.test",
+                "activo": true,
+                "created_at": "2026-11-24T03:37:58.000000Z",
+                "updated_at": "2026-11-24T03:38:01.000000Z",
+                "carrera": {
+                    "id": 1,
+                    "nombre": "Ingeniería en Tecnologías de Información",
+                    "codigo": "ITI",
+                    "sede_id": 1,
+                    "created_at": "2026-11-24T03:37:57.000000Z",
+                    "updated_at": "2026-11-24T03:37:57.000000Z"
+                }
+            }
+        },
+        {
+            "seccion": "ABAC (Actividad 4 - Escenario 2)",
+            "caso": "PUT Ana - Profesor ITI SR (misma carrera + sede diferente)",
+            "actor": "profesor.iti.sr@academica.test",
+            "metodo": "PUT",
+            "endpoint": "/api/estudiantes/1",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "No tiene permiso para actualizar este estudiante.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "ABAC (Actividad 4 - Escenario 3)",
+            "caso": "PUT Luis - Profesor ITI SC (carrera diferente + misma sede)",
+            "actor": "profesor.iti@academica.test",
+            "metodo": "PUT",
+            "endpoint": "/api/estudiantes/2",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "No tiene permiso para actualizar este estudiante.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "ABAC (Actividad 4 - Escenario 4)",
+            "caso": "PUT Mateo - Profesor ITI SC (carrera diferente + sede diferente)",
+            "actor": "profesor.iti@academica.test",
+            "metodo": "PUT",
+            "endpoint": "/api/estudiantes/4",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "No tiene permiso para actualizar este estudiante.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "ABAC (Actividad 3 - Coordinador)",
+            "caso": "PUT Ana - Coordinador ITI (misma carrera + misma sede)",
+            "actor": "coordinador@academica.test",
+            "metodo": "PUT",
+            "endpoint": "/api/estudiantes/1",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "id": 1,
+                "user_id": 4,
+                "carrera_id": 1,
+                "cedula": "1-1111-1111",
+                "nombre": "Ana Actualizada Coord",
+                "apellido": "Estudiante",
+                "correo_institucional": "ana@estudiantes.test",
+                "activo": true,
+                "created_at": "2026-11-24T03:37:58.000000Z",
+                "updated_at": "2026-11-24T03:38:01.000000Z",
+                "carrera": {
+                    "id": 1,
+                    "nombre": "Ingeniería en Tecnologías de Información",
+                    "codigo": "ITI",
+                    "sede_id": 1,
+                    "created_at": "2026-11-24T03:37:57.000000Z",
+                    "updated_at": "2026-11-24T03:37:57.000000Z"
+                }
+            }
+        },
+        {
+            "seccion": "ABAC (Actividad 3 - Coordinador)",
+            "caso": "PUT Luis - Coordinador ITI (otra carrera)",
+            "actor": "coordinador@academica.test",
+            "metodo": "PUT",
+            "endpoint": "/api/estudiantes/2",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "No tiene permiso para actualizar este estudiante.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "Policies (Modificación)",
+            "caso": "PUT Ana - Estudiante Ana (sin permiso editar)",
+            "actor": "estudiante1@academica.test",
+            "metodo": "PUT",
+            "endpoint": "/api/estudiantes/1",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "No tiene permiso para actualizar estudiantes.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "RBAC (Eliminación)",
+            "caso": "DELETE Carlos - Profesor ITI denegado",
+            "actor": "profesor.iti@academica.test",
+            "metodo": "DELETE",
+            "endpoint": "/api/estudiantes/5",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "No tiene permiso para eliminar estudiantes.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "RBAC (Eliminación)",
+            "caso": "DELETE Carlos - Coordinador denegado",
+            "actor": "coordinador@academica.test",
+            "metodo": "DELETE",
+            "endpoint": "/api/estudiantes/5",
+            "esperado": 403,
+            "obtenido": 403,
+            "aprobado": true,
+            "respuesta": {
+                "message": "No tiene permiso para eliminar estudiantes.",
+                "exception": "Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException"
+            }
+        },
+        {
+            "seccion": "RBAC (Eliminación)",
+            "caso": "DELETE Carlos - Administrador autorizado",
+            "actor": "admin@academica.test",
+            "metodo": "DELETE",
+            "endpoint": "/api/estudiantes/5",
+            "esperado": 200,
+            "obtenido": 200,
+            "aprobado": true,
+            "respuesta": {
+                "message": "Estudiante eliminado correctamente"
+            }
+        }
+    ]
+}

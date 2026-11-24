@@ -14,7 +14,7 @@
 - `coleccion/README.md`: Guía de uso de las colecciones.
 - `docs/reflexion.md`: Respuestas técnicas a las 8 preguntas de la Actividad 5 (Sección 35).
 - `docs/evidencias/README.md`: Consolidado de evidencias, matriz `401 vs 403` y checklist completo de la Sección 38.
-- `docs/evidencias/p5/README.md` y `docs/evidencias/p5/salida_comandos.txt`: Registro de comandos ejecutados y salidas literales en verde.
+- `docs/evidencias/p5/README.md`, `docs/evidencias/p5/salida_comandos.txt`, `docs/evidencias/p5/evidencias_pruebas_autorizacion.md` y `docs/evidencias/p5/resultados_http_autorizacion.json`: Registro de comandos ejecutados, salidas literales en verde y batería de **35 pruebas HTTP reales de autorización** (`35/35 aprobadas`).
 - Commit de cierre de integración para completar el CRUD/ABAC de estudiantes (`EstudianteController`, `routes/api/estudiantes.php` y ajuste de `EstudiantePolicy`) sin eliminar ni reescribir ningún commit previo del equipo.
 
 ---
