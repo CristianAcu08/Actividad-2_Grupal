@@ -1,0 +1,32 @@
+meta {
+  name: 03. Login Profesor ITI
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/login
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "profesor.iti@academica.test",
+    "password": "Password123!"
+  }
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Save profesor_iti_token", function() {
+    bru.setEnvVar("profesor_iti_token", res.getBody().token);
+  });
+}

@@ -1,0 +1,25 @@
+meta {
+  name: 04. Profesor Dashboard Denegado Admin (403)
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/api/profesor/dashboard
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{admin_token}}
+}
+
+tests {
+  test("Status code is 403", function() {
+    expect(res.getStatus()).to.equal(403);
+  });
+}

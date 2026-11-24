@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "API Academica - Coleccion Consolidada",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,32 @@
+meta {
+  name: 04. Login Estudiante Ana
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/login
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "estudiante1@academica.test",
+    "password": "Password123!"
+  }
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Save estudiante1_token", function() {
+    bru.setEnvVar("estudiante1_token", res.getBody().token);
+  });
+}

@@ -1,0 +1,32 @@
+meta {
+  name: 08. Actualizar Luis Profesor ITI Otra Carrera (403)
+  type: http
+  seq: 8
+}
+
+put {
+  url: {{base_url}}/api/estudiantes/{{estudiante_luis_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{profesor_iti_token}}
+}
+
+body:json {
+  {
+    "nombre": "Luis Modificado"
+  }
+}
+
+tests {
+  test("Status code is 403", function() {
+    expect(res.getStatus()).to.equal(403);
+  });
+}

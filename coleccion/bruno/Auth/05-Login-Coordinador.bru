@@ -1,0 +1,32 @@
+meta {
+  name: 05. Login Coordinador
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/login
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "coordinador@academica.test",
+    "password": "Password123!"
+  }
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Save coordinador_token", function() {
+    bru.setEnvVar("coordinador_token", res.getBody().token);
+  });
+}

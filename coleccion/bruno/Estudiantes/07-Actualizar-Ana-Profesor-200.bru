@@ -1,0 +1,33 @@
+meta {
+  name: 07. Actualizar Ana Profesor ITI Misma Carrera y Sede (200)
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{base_url}}/api/estudiantes/{{estudiante_ana_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{profesor_iti_token}}
+}
+
+body:json {
+  {
+    "nombre": "Ana María",
+    "apellido": "Estudiante"
+  }
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

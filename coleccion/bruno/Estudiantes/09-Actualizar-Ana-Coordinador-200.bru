@@ -1,0 +1,32 @@
+meta {
+  name: 09. Actualizar Ana Coordinador Misma Carrera y Sede (200)
+  type: http
+  seq: 9
+}
+
+put {
+  url: {{base_url}}/api/estudiantes/{{estudiante_ana_id}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{coordinador_token}}
+}
+
+body:json {
+  {
+    "nombre": "Ana Coordinador"
+  }
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

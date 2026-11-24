@@ -1,0 +1,25 @@
+meta {
+  name: 01. Admin Dashboard Autorizado (200)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/admin/dashboard
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{admin_token}}
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}
