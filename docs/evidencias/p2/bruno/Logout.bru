@@ -1,0 +1,25 @@
+meta {
+  name: 6. Logout
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/logout
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}
