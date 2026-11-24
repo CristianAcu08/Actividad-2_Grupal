@@ -1,76 +1,73 @@
 === php artisan --version ===
 Laravel Framework 13.43.0
 
-=== php artisan migrate:fresh --seed ===
-
-   INFO  Preparing database.
-
-  Creating migration table ............................................................................... 7.97ms DONE
-
-   INFO  Running migrations.
-
-  0001_01_01_000000_create_users_table .................................................................. 19.48ms DONE
-  0001_01_01_000001_create_cache_table .................................................................. 11.78ms DONE
-  0001_01_01_000002_create_jobs_table ................................................................... 13.49ms DONE
-  2026_11_24_012804_create_personal_access_tokens_table ................................................. 13.00ms DONE
-  2026_11_24_012853_create_permission_tables ............................................................ 31.31ms DONE
-  2026_11_24_012922_create_sedes_table ................................................................... 9.26ms DONE
-  2026_11_24_012923_create_carreras_table ................................................................ 9.12ms DONE
-  2026_11_24_012924_create_estudiantes_table ............................................................ 19.83ms DONE
-  2026_11_24_012925_add_carrera_id_and_sede_id_to_users_table ........................................... 41.56ms DONE
-
-   INFO  Seeding database.
-
-  Database\Seeders\RolesYPermisosSeeder ................................................................... 95 ms DONE
-  Database\Seeders\DatosPruebaSeeder ................................................................... 1,265 ms DONE
-
 === php artisan permission:cache-reset ===
 Permission cache flushed.
 
 === php artisan route:list --path=api ===
 
-  GET|HEAD   api/admin/dashboard .......................................................... routes/api/dashboard.php:8
-  POST       api/login .............................................................. login › Api\AuthController@login
-  POST       api/logout .................................................................... Api\AuthController@logout
-  GET|HEAD   api/me ............................................................................ Api\AuthController@me
-  GET|HEAD   api/profesor/dashboard ...................................................... routes/api/dashboard.php:17
-  POST       api/register ................................................................ Api\AuthController@register
-  GET|HEAD   api/user ............................................................................... routes/api.php:6
+  GET|HEAD  api/admin/dashboard ........................................................... routes/api/dashboard.php:8
+  GET|HEAD  api/estudiantes ........................................................... Api\EstudianteController@index
+  POST      api/estudiantes ........................................................... Api\EstudianteController@store
+  GET|HEAD  api/estudiantes/{estudiante} ............................................... Api\EstudianteController@show
+  PUT       api/estudiantes/{estudiante} ............................................. Api\EstudianteController@update
+  PATCH     api/estudiantes/{estudiante} ............................................. Api\EstudianteController@update
+  DELETE    api/estudiantes/{estudiante} ............................................ Api\EstudianteController@destroy
+  POST      api/login ............................................................... login › Api\AuthController@login
+  POST      api/logout ..................................................................... Api\AuthController@logout
+  GET|HEAD  api/me ............................................................................. Api\AuthController@me
+  GET|HEAD  api/profesor/dashboard ....................................................... routes/api/dashboard.php:17
+  POST      api/register ................................................................. Api\AuthController@register
+  GET|HEAD  api/user ................................................................................ routes/api.php:6
 
-                                                                                                    Showing [7] routes
+                                                                                                   Showing [13] routes
 
 === php artisan test --filter=AutorizacionEstudiantesTest ===
 
-   FAIL  Tests\Feature\AutorizacionEstudiantesTest
-  ⨯ student can view own record                                                   [404 - falta routes/api/estudiantes.php]
-  ⨯ student cannot view another student record                                    [404 - falta routes/api/estudiantes.php]
-  ⨯ professor cannot update student from another career                           [404 - falta routes/api/estudiantes.php]
-  ✓ admin dashboard gate allows only administrators                               [PASS]
-  ✓ professor dashboard gate allows only professors                               [PASS]
-  ✓ unauthenticated requests to auth and dashboards return 401                    [PASS]
-  ⨯ unauthenticated requests to estudiantes return 401                            [404 - falta routes/api/estudiantes.php]
-  ✓ public register ignores roles and permissions payload                         [PASS]
-  ⨯ store estudiante route has permission middleware                              [FAIL - ruta POST api/estudiantes no registrada]
-  ⨯ only administrator can create and delete student                              [404 - falta routes/api/estudiantes.php]
-  ⨯ coordinator has rbac permissions and respects abac rules                      [404 - falta routes/api/estudiantes.php]
-  ⨯ professor can update student with same career and same sede                   [404 - falta routes/api/estudiantes.php]
-  ⨯ professor cannot update student with same career and different sede           [404 - falta routes/api/estudiantes.php]
-  ⨯ professor cannot update student with different career and different sede      [404 - falta routes/api/estudiantes.php]
-  ⨯ inactive student record cannot be viewed by other student professor or coordinator [404 - falta routes/api/estudiantes.php]
+   PASS  Tests\Feature\AutorizacionEstudiantesTest
+  ✓ student can view own record                                                                                  0.40s
+  ✓ student cannot view another student record                                                                   0.04s
+  ✓ professor cannot update student from another career                                                          0.03s
+  ✓ admin dashboard gate allows only administrators                                                              0.04s
+  ✓ professor dashboard gate allows only professors                                                              0.03s
+  ✓ unauthenticated requests to auth and dashboards return 401                                                   0.03s
+  ✓ unauthenticated requests to estudiantes return 401                                                           0.04s
+  ✓ public register ignores roles and permissions payload                                                        0.04s
+  ✓ store estudiante route has permission middleware                                                             0.02s
+  ✓ only administrator can create and delete student                                                             0.04s
+  ✓ coordinator has rbac permissions and respects abac rules                                                     0.04s
+  ✓ professor can update student with same career and same sede                                                  0.03s
+  ✓ professor cannot update student with same career and different sede                                          0.03s
+  ✓ professor cannot update student with different career and different sede                                     0.03s
+  ✓ inactive student record cannot be viewed by other student professor or coordinator                           0.04s
 
-  Tests:    11 failed, 4 passed (31 assertions)
-  Duration: 1.33s
+  Tests:    15 passed (40 assertions)
+  Duration: 1.27s
 
 === php artisan test ===
 
    PASS  Tests\Unit\ExampleTest
   ✓ that true is true
 
-   FAIL  Tests\Feature\AutorizacionEstudiantesTest
-  (4 passed, 11 failed - bloqueados por falta de EstudianteController y routes/api/estudiantes.php de P4)
+   PASS  Tests\Feature\AutorizacionEstudiantesTest
+  ✓ student can view own record                                                                                  0.42s
+  ✓ student cannot view another student record                                                                   0.04s
+  ✓ professor cannot update student from another career                                                          0.03s
+  ✓ admin dashboard gate allows only administrators                                                              0.04s
+  ✓ professor dashboard gate allows only professors                                                              0.04s
+  ✓ unauthenticated requests to auth and dashboards return 401                                                   0.03s
+  ✓ unauthenticated requests to estudiantes return 401                                                           0.04s
+  ✓ public register ignores roles and permissions payload                                                        0.04s
+  ✓ store estudiante route has permission middleware                                                             0.02s
+  ✓ only administrator can create and delete student                                                             0.04s
+  ✓ coordinator has rbac permissions and respects abac rules                                                     0.04s
+  ✓ professor can update student with same career and same sede                                                  0.03s
+  ✓ professor cannot update student with same career and different sede                                          0.03s
+  ✓ professor cannot update student with different career and different sede                                     0.03s
+  ✓ inactive student record cannot be viewed by other student professor or coordinator                           0.04s
 
    PASS  Tests\Feature\ExampleTest
-  ✓ the application returns a successful response
+  ✓ the application returns a successful response                                                                0.04s
 
-  Tests:    11 failed, 6 passed (33 assertions)
-  Duration: 1.35s
+  Tests:    17 passed (42 assertions)
+  Duration: 1.37s
