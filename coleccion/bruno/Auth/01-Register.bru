@@ -1,0 +1,38 @@
+meta {
+  name: 01. Register Publico Anti-Escalada
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/api/register
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Usuario Prueba Registro",
+    "email": "nuevo.usuario@academica.test",
+    "password": "Password123!",
+    "password_confirmation": "Password123!",
+    "rol": "administrador",
+    "roles": ["administrador"],
+    "permissions": ["estudiantes.crear"]
+  }
+}
+
+tests {
+  test("Status code is 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+  test("Token returned", function() {
+    expect(res.getBody().token).to.be.a("string");
+    bru.setEnvVar("token", res.getBody().token);
+  });
+}

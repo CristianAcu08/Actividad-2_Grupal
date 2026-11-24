@@ -1,0 +1,25 @@
+meta {
+  name: 08. Logout (200)
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url}}/api/logout
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

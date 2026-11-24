@@ -1,0 +1,73 @@
+=== php artisan --version ===
+Laravel Framework 13.43.0
+
+=== php artisan permission:cache-reset ===
+Permission cache flushed.
+
+=== php artisan route:list --path=api ===
+
+  GET|HEAD  api/admin/dashboard ........................................................... routes/api/dashboard.php:8
+  GET|HEAD  api/estudiantes ........................................................... Api\EstudianteController@index
+  POST      api/estudiantes ........................................................... Api\EstudianteController@store
+  GET|HEAD  api/estudiantes/{estudiante} ............................................... Api\EstudianteController@show
+  PUT       api/estudiantes/{estudiante} ............................................. Api\EstudianteController@update
+  PATCH     api/estudiantes/{estudiante} ............................................. Api\EstudianteController@update
+  DELETE    api/estudiantes/{estudiante} ............................................ Api\EstudianteController@destroy
+  POST      api/login ............................................................... login › Api\AuthController@login
+  POST      api/logout ..................................................................... Api\AuthController@logout
+  GET|HEAD  api/me ............................................................................. Api\AuthController@me
+  GET|HEAD  api/profesor/dashboard ....................................................... routes/api/dashboard.php:17
+  POST      api/register ................................................................. Api\AuthController@register
+  GET|HEAD  api/user ................................................................................ routes/api.php:6
+
+                                                                                                   Showing [13] routes
+
+=== php artisan test --filter=AutorizacionEstudiantesTest ===
+
+   PASS  Tests\Feature\AutorizacionEstudiantesTest
+  ✓ student can view own record                                                                                  0.40s
+  ✓ student cannot view another student record                                                                   0.04s
+  ✓ professor cannot update student from another career                                                          0.03s
+  ✓ admin dashboard gate allows only administrators                                                              0.04s
+  ✓ professor dashboard gate allows only professors                                                              0.03s
+  ✓ unauthenticated requests to auth and dashboards return 401                                                   0.03s
+  ✓ unauthenticated requests to estudiantes return 401                                                           0.04s
+  ✓ public register ignores roles and permissions payload                                                        0.04s
+  ✓ store estudiante route has permission middleware                                                             0.02s
+  ✓ only administrator can create and delete student                                                             0.04s
+  ✓ coordinator has rbac permissions and respects abac rules                                                     0.04s
+  ✓ professor can update student with same career and same sede                                                  0.03s
+  ✓ professor cannot update student with same career and different sede                                          0.03s
+  ✓ professor cannot update student with different career and different sede                                     0.03s
+  ✓ inactive student record cannot be viewed by other student professor or coordinator                           0.04s
+
+  Tests:    15 passed (40 assertions)
+  Duration: 1.27s
+
+=== php artisan test ===
+
+   PASS  Tests\Unit\ExampleTest
+  ✓ that true is true
+
+   PASS  Tests\Feature\AutorizacionEstudiantesTest
+  ✓ student can view own record                                                                                  0.42s
+  ✓ student cannot view another student record                                                                   0.04s
+  ✓ professor cannot update student from another career                                                          0.03s
+  ✓ admin dashboard gate allows only administrators                                                              0.04s
+  ✓ professor dashboard gate allows only professors                                                              0.04s
+  ✓ unauthenticated requests to auth and dashboards return 401                                                   0.03s
+  ✓ unauthenticated requests to estudiantes return 401                                                           0.04s
+  ✓ public register ignores roles and permissions payload                                                        0.04s
+  ✓ store estudiante route has permission middleware                                                             0.02s
+  ✓ only administrator can create and delete student                                                             0.04s
+  ✓ coordinator has rbac permissions and respects abac rules                                                     0.04s
+  ✓ professor can update student with same career and same sede                                                  0.03s
+  ✓ professor cannot update student with same career and different sede                                          0.03s
+  ✓ professor cannot update student with different career and different sede                                     0.03s
+  ✓ inactive student record cannot be viewed by other student professor or coordinator                           0.04s
+
+   PASS  Tests\Feature\ExampleTest
+  ✓ the application returns a successful response                                                                0.04s
+
+  Tests:    17 passed (42 assertions)
+  Duration: 1.37s

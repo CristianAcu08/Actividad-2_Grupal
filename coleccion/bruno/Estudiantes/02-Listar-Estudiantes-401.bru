@@ -1,0 +1,21 @@
+meta {
+  name: 02. Listar Estudiantes Sin Token (401)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/api/estudiantes
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+tests {
+  test("Status code is 401", function() {
+    expect(res.getStatus()).to.equal(401);
+  });
+}

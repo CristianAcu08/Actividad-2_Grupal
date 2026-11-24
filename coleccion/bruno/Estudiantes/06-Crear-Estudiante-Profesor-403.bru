@@ -1,0 +1,38 @@
+meta {
+  name: 06. Crear Estudiante Profesor Denegado RBAC (403)
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/api/estudiantes
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{profesor_iti_token}}
+}
+
+body:json {
+  {
+    "user_id": 7,
+    "carrera_id": 1,
+    "cedula": "3-3333-3334",
+    "nombre": "Carlos",
+    "apellido": "Ejemplo",
+    "correo_institucional": "carlos2@estudiantes.test",
+    "activo": true
+  }
+}
+
+tests {
+  test("Status code is 403", function() {
+    expect(res.getStatus()).to.equal(403);
+  });
+}

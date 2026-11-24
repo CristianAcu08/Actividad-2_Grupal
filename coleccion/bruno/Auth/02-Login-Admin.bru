@@ -1,0 +1,33 @@
+meta {
+  name: 02. Login Administrador
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/login
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "admin@academica.test",
+    "password": "Password123!"
+  }
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Save admin_token", function() {
+    bru.setEnvVar("admin_token", res.getBody().token);
+    bru.setEnvVar("token", res.getBody().token);
+  });
+}
